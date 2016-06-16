@@ -6,26 +6,35 @@ class MyWebApp < Sinatra::Base
   end
 
   helpers do
-    # def icon_button(icon, message='', type='default')
+    # this defines a method to help you create buttons faster
     def icon_button(icon, message='', type='button')
       %(
-        <button type="#{type}" class="btn btn-default btn-lg">
-          <span class="#{icon}" aria-hidden="true"></span> #{message}
-        </button>
+      <button type="#{type}" class="btn btn-default btn-lg">
+      <span class="#{icon}" aria-hidden="true"></span> #{message}
+      </button>
       )
     end
-
-    # def pluralize
-    #   if number_of_cats == 1
-    #     singular_or_plural = 'cat'
-    #   else
-    #     singular_or_plural = 'cats'
-    #   end
-    # end
+    # this does stuff with fonts
+    def use_google_font(font='Open+Sans')
+      %(
+      <link href='https://fonts.googleapis.com/css?family=#{font}' rel='stylesheet' type='text/css'>
+      <style>
+      body {
+        font-family: #{font};
+      }
+      </style>
+      )
+    end
+    def pluralize(singular_name, count)
+      if count == 1
+        %(#{count} cat)
+      else
+        %(#{count} cats)
+      end
+    end
 
     def current_year
       Time.now.year
     end
-
   end
 end
